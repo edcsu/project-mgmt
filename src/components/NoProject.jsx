@@ -1,6 +1,6 @@
 import noProjectImage from '../assets/no-projects.png'
 import Button from './Button'
-function NoProject() {
+function NoProject({onAddProject}) {
   return (
     <div className='mt-24 text-center w-2/3'>
         <img src={noProjectImage} alt="no project" className='w-16 h-16 pbject-contain mx-auto'/>
@@ -11,7 +11,7 @@ function NoProject() {
             Select a project or create a new one
         </p>
         <p className='mt-8'>
-            <Button>Create a new project</Button>
+            <Button onClick={onAddProject}>Create a new project</Button>
         </p>
     </div>
   )
