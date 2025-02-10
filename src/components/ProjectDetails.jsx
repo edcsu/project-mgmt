@@ -32,6 +32,7 @@ function ProjectDetails({project, onDelete, onAddTask, onDeleteTask, tasks}) {
             onAdd={onAddTask} 
             onDelete={onDeleteTask} 
             tasks={tasks}
+            id={project.id}
         />
     </div>
   )

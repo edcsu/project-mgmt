@@ -4,6 +4,7 @@ import NoProject from "./components/NoProject";
 import Sidebar from "./components/Sidebar";
 import { v7 as uuidv7 } from 'uuid';
 import ProjectDetails from './components/ProjectDetails';
+import { ta } from 'date-fns/locale';
 
 function App() {
   const [projectState, setProjectState] = useState({

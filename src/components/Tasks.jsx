@@ -1,7 +1,9 @@
 import React from 'react'
 import NewTask from './NewTask'
 
-function Tasks({ tasks, onAdd, onDelete}) {
+function Tasks({ id, tasks, onAdd, onDelete}) {
+  const projectTasks = tasks.filter(task => task.projectId === id)
+
   return (
     <section>
         <h2 className='text-2xl font-bold text-stone-700 mb-4'>Tasks</h2>
@@ -10,7 +12,7 @@ function Tasks({ tasks, onAdd, onDelete}) {
             <p className='text-stone-800 my-4 '>This projects doesnot have any tasks yet</p>
         ) : (
             <ul className='p-4 mt-8 rounded-md bg-stone-100'>
-                {tasks.map(task => (
+                {projectTasks.map(task => (
                     <li key={task.id} className='flex justify-between my-2'>
                         <span>{task.text}</span>
                         <button 
