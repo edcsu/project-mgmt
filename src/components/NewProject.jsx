@@ -30,10 +30,10 @@ function NewProject({onAdd}) {
 
   return (
     <>
-        <Modal ref={dialog} buttonText="Close">
-            <h2>Invalid input</h2>
-            <p>A value is missing</p>
-            <p>Ensure that each input has a value</p>
+        <Modal ref={dialog} buttonText="Close" >
+            <h2 className='text-xl font-bold text-stone-700 mt-4 my-4'>Invalid input</h2>
+            <p className='text-stone-600 mb-4'>A value is missing</p>
+            <p className='text-stone-600 mb-4'>Ensure that each input has a value</p>
         </Modal>
         <div className="w-[35rem] mt-16">
             <menu className="flex items-center justify-end gap-4 my-4">
