@@ -15,6 +15,7 @@ function Tasks({ tasks, onAdd, onDelete}) {
                         <span>{task.text}</span>
                         <button 
                             className='cursor-pointer text-red-400 px-2 py-1 hover:text-stone-100 hover:bg-red-400 hover:rounded-sm'
+                            onClick={() => onDelete(task.id)}
                         >
                             clear
                         </button>
