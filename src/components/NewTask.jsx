@@ -8,7 +8,7 @@ function NewTask({onAdd}) {
   }
 
   function handleClick() {
-    if (enteredTask) {
+    if (enteredTask.trim()) {
         onAdd(enteredTask)
         setEnteredTask('')
     }

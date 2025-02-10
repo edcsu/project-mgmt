@@ -16,7 +16,8 @@ function NewProject({onAdd, onCancel}) {
 
     if (enteredTitle.trim() === '' ||
         enteredDescription.trim() === '' ||
-        enteredDueDate.trim() === '') {
+        enteredDueDate.trim() === '' ||
+        new Date(enteredDueDate.trim()) < new Date()) {
         dialog.current.open()
         return
     }
