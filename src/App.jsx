@@ -4,11 +4,13 @@ import NoProject from "./components/NoProject";
 import Sidebar from "./components/Sidebar";
 import { v7 as uuidv7 } from 'uuid';
 import ProjectDetails from './components/ProjectDetails';
+import { ta } from 'date-fns/locale';
 
 function App() {
   const [projectState, setProjectState] = useState({
     selectedProjectId: undefined,
-    projects: []
+    projects: [],
+    tasks:[]
   })
 
   function startAddProject() {
@@ -63,9 +65,38 @@ function App() {
     })
   }
 
+  function handleAddTask(value) {
+    setProjectState(prevState => {
+      const taskId = uuidv7();
+      const newTask = {
+        text: value,
+        id : taskId,
+        projectId: prevState.selectedProjectId
+      }
+      return{
+        ...prevState,
+        tasks: [...prevState.tasks, newTask]
+      }
+    })
+  }
+
+  function handleDeleteTask(id) {
+    setProjectState(prevState => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter((task) => task.id !== id)
+      }
+    })
+  }
+
   const selectedProject = projectState.projects.find(project => project.id === projectState.selectedProjectId)
 
-  let content = <ProjectDetails project={selectedProject} onDelete={handleDeleteProject}/>;
+  let content = <ProjectDetails 
+    project={selectedProject} 
+    onDelete={handleDeleteProject} 
+    onAddTask={handleAddTask} 
+    onDeleteTask={handleDeleteTask}
+    tasks={projectState.tasks} />;
 
   if (projectState.selectedProjectId === null) {
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancelRequest}/>
@@ -78,7 +109,8 @@ function App() {
       <Sidebar 
         onAddProject={startAddProject}
         projects={projectState.projects} 
-        onSelectProject={handleSelectedProject} 
+        onSelectProject={handleSelectedProject}
+        selectedProjectId={projectState.selectedProjectId} 
       />
       {content}
     </main>
