@@ -1,16 +1,18 @@
 import { useState } from 'react'
 
 function NewTask({onAdd}) {
-  const [enteredTask, setEnteredTask] = useState()
+  const [enteredTask, setEnteredTask] = useState('')
 
   function handleChange(event) {
     setEnteredTask(event.target.value)
   }
 
   function handleClick() {
-    onAdd(enteredTask)
-    setEnteredTask('')
-  }
+    if (enteredTask) {
+        onAdd(enteredTask)
+        setEnteredTask('')
+    }
+}
 
   return (
     <div className='flex items-center gap-2'>
