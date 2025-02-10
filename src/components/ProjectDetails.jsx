@@ -2,7 +2,7 @@ import React from 'react'
 import { formatDistanceToNow, format } from 'date-fns'
 import Tasks from './Tasks'
 
-function ProjectDetails({project, onDelete}) {
+function ProjectDetails({project, onDelete, onAddTask, onDeleteTask, tasks}) {
     const formattedDate = format(new Date(project.dueDate), 'dd-MMM-yyyy')
     const formattedDateDistance = formatDistanceToNow((new Date(project.dueDate)))
   return (
@@ -28,7 +28,11 @@ function ProjectDetails({project, onDelete}) {
             </p>
             <p className='text-stone-600 whitespace-pre-wrap'>{project.description}</p>
         </header>
-        <Tasks />
+        <Tasks 
+            onAdd={onAddTask} 
+            onDelete={onDeleteTask} 
+            tasks={tasks}
+        />
     </div>
   )
 }
