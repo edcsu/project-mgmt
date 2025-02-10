@@ -1,5 +1,6 @@
 import React from 'react'
 import { formatDistanceToNow, format } from 'date-fns'
+import Tasks from './Tasks'
 
 function ProjectDetails({project, onDelete}) {
     const formattedDate = format(new Date(project.dueDate), 'dd-MMM-yyyy')
@@ -13,13 +14,21 @@ function ProjectDetails({project, onDelete}) {
                     className='text-stone-50 bg-red-400 rounded-xl px-3 py-2 hover:text-stone-10 hover:bg-red-600 cursor-pointer'
                     onClick={onDelete}
                 >
-                    delete
+                    Delete
                 </button>
             </div>
-            <p className='mb-4 text-stone-400'>{formattedDate} - {formattedDateDistance}</p>
+            <p className='mb-4 text-stone-400'>
+                 <span className='text-stone-800 mr-1'>
+                    Due in :
+                </span>
+                {formattedDateDistance}
+                <span className='mx-1'>
+                    ({formattedDate})
+                </span> 
+            </p>
             <p className='text-stone-600 whitespace-pre-wrap'>{project.description}</p>
         </header>
-        <h2>TASKS</h2>
+        <Tasks />
     </div>
   )
 }
