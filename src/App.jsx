@@ -2,6 +2,7 @@ import { useState } from 'react'
 import NewProject from "./components/NewProject";
 import NoProject from "./components/NoProject";
 import Sidebar from "./components/Sidebar";
+import { v7 as uuidv7 } from 'uuid';
 
 function App() {
   const [projectState, setProjectState] = useState({
@@ -9,7 +10,7 @@ function App() {
     projects: []
   })
 
-  function handleAddProject(params) {
+  function startAddProject() {
     setProjectState(prevState => {
       return {
         ...prevState,
@@ -17,20 +18,33 @@ function App() {
       }
     })
   }
+  
+  function handleAddProject(project) {
+    setProjectState(prevState => {
+      const newProject = {
+        ...project,
+        id : uuidv7()
+      }
+      return{
+        ...prevState,
+        projects: [...prevState.projects, newProject]
+      }
+    })
+  }
 
   let content;
 
   if (projectState.selectedProjectId === null) {
-    content = <NewProject />
+    content = <NewProject onAdd={handleAddProject} />
   } else if(projectState.selectedProjectId === undefined){
-    content = <NoProject onAddProject={handleAddProject}/>
+    content = <NoProject onAddProject={startAddProject}/>
   } else {
     content = <p>I have a project</p>
   }
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <Sidebar onAddProject={handleAddProject}/>
+      <Sidebar onAddProject={startAddProject}/>
       {content}
     </main>
   );
