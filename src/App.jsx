@@ -108,7 +108,8 @@ function App() {
       <Sidebar 
         onAddProject={startAddProject}
         projects={projectState.projects} 
-        onSelectProject={handleSelectedProject} 
+        onSelectProject={handleSelectedProject}
+        selectedProjectId={projectState.selectedProjectId} 
       />
       {content}
     </main>
