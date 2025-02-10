@@ -2,14 +2,14 @@ import { useRef } from 'react'
 import Input from './Input'
 import Modal from './Modal'
 
-function NewProject({onAdd}) {
+function NewProject({onAdd, onCancel}) {
   const dialog = useRef()
 
   const title = useRef()
   const description = useRef()
   const dueDate = useRef()
 
-  function handleSave(params) {
+  function handleSave() {
     const enteredTitle = title.current.value
     const enteredDescription = description.current.value
     const enteredDueDate = dueDate.current.value
@@ -38,7 +38,7 @@ function NewProject({onAdd}) {
         <div className="w-[35rem] mt-16">
             <menu className="flex items-center justify-end gap-4 my-4">
                 <li>
-                    <button className='text-stone-800 hover:text-stone-900 cursor-pointer'>Cancel</button>
+                    <button className='text-stone-800 hover:text-stone-900 cursor-pointer' onClick={onCancel}>Cancel</button>
                 </li>
                 <li>
                     <button 
