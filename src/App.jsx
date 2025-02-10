@@ -21,12 +21,14 @@ function App() {
   
   function handleAddProject(project) {
     setProjectState(prevState => {
+      const projectId = uuidv7();
       const newProject = {
         ...project,
-        id : uuidv7()
+        id : projectId
       }
       return{
         ...prevState,
+        selectedProjectId: projectId,
         projects: [...prevState.projects, newProject]
       }
     })
@@ -44,7 +46,7 @@ function App() {
 
   return (
     <main className="h-screen my-8 flex gap-8 mr-8">
-      <Sidebar onAddProject={startAddProject}/>
+      <Sidebar onAddProject={startAddProject} projects={projectState.projects} />
       {content}
     </main>
   );
